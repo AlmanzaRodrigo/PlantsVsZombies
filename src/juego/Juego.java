@@ -1,5 +1,6 @@
 package juego;
 
+
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 
@@ -21,6 +22,7 @@ public class Juego extends InterfaceJuego
 
 		// Inicializa otros objetos
 		this.board = new Board();
+		
 		this.proyectil1 = new ProyectilNormal(77 + 25, 133 - 15);
 		this.peaShooter1 = new PeaShooter(77, 133, 100);
 		
@@ -39,9 +41,24 @@ public class Juego extends InterfaceJuego
 		// Procesamiento de un instante de tiempo
 		// ...
 		
+		
+		// Dibuja el entorno segun el estado en el
+		// que se encuentre el juego. Estados:
+		// pantallaInicial, tableroDeJuego,
+		// PantallaFinal, PantallaHasPerdido.
 		this.board.dibujar(entorno);
-		this.proyectil1.dibujar(entorno);
-		this.peaShooter1.dibujar(entorno);
+		
+		
+		
+		if(this.board.estaIniciadoElJuego()) {
+			this.proyectil1.dibujar(entorno);
+			moverProyectiles();
+			this.peaShooter1.dibujar(entorno);			
+		}
+		
+	}
+	
+	public void moverProyectiles() {
 		
 	}
 	
