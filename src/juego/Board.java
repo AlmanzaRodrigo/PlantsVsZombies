@@ -6,12 +6,17 @@ import java.awt.Image;
 import javax.sound.sampled.Clip;
 
 public class Board {
+	
+	public String PANTALLA_INICIAL = "pantallaInicial";
+	public String PANTALLA_JUEGO = "pantallaJuego";
+	public String PANTALLA_HAS_PERDIDO = "pantallaHasPerdido";
+	public String PANTALLA_FINAL = "pantallaFinal";
+	
 	private int filas;
 	private int columnas;
 	private int anchoCasilla;
 	private int altoCasilla;
-	private boolean pantallaInicial = true;
-	private boolean pantallaFinal = false;
+	private String estadoDelTablero = this.PANTALLA_INICIAL;
 	private boolean musicaSonando = false;
 	private Image imagenFondo = Herramientas.cargarImagen("recursos/base.png");
 	private Image imagenInicial = Herramientas.cargarImagen("recursos/intro.png");
@@ -20,19 +25,18 @@ public class Board {
 	public Board() {
 		this.filas = 5;
 		this.columnas = 9;
-		this.pantallaInicial = true;
 	}
 	
 	public void dibujar(Entorno entorno) {
-		if(pantallaInicial) {
+		if(this.getEstadoDelTablero() == this.PANTALLA_INICIAL) {
 			entorno.dibujarImagen(
 					imagenInicial, entorno.ancho() / 2,
 					entorno.alto() / 2, 0, 1
 			);
-		} else if(!pantallaInicial && !pantallaFinal) {
+		} else if(this.getEstadoDelTablero() == this.PANTALLA_JUEGO) {
 			entorno.dibujarImagen(
 					this.imagenFondo, entorno.ancho() / 2,
-					entorno.alto() / 2, 0, 0.83
+					entorno.alto() / 2, 0, 0.55
 					);			
 		}
 		// TODO: Implemetar pantallaFinal y pantallaHasPerdido.
@@ -43,7 +47,11 @@ public class Board {
 		// pantalla del juego
 	}
 	
-	public boolean estaIniciadoElJuego() {
-		return !this.pantallaInicial && !this.pantallaFinal;
+	public String getEstadoDelTablero() {
+		return this.estadoDelTablero;
+	}
+	
+	public void setEstadoDelTablero(String estado) {
+		this.estadoDelTablero = estado;
 	}
 }

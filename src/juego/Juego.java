@@ -11,9 +11,10 @@ public class Juego extends InterfaceJuego
 	
 	// Variables y métodos propios de cada grupo
 	// ...
-	private PeaShooter peaShooter1;
 	private Board board;
-	private ProyectilNormal proyectil1;
+	private Object[] plantas;
+	private PeaShooter peaShooter1;
+	private ProyectilNormal[] proyectiles;
 	
 	Juego()
 	{
@@ -22,8 +23,9 @@ public class Juego extends InterfaceJuego
 
 		// Inicializa otros objetos
 		this.board = new Board();
+		this.proyectiles = new ProyectilNormal[30];
+		this.plantas = new Object[45];
 		
-		this.proyectil1 = new ProyectilNormal(77 + 25, 133 - 15);
 		this.peaShooter1 = new PeaShooter(77, 133, 100);
 		
 		// Inicia el juego!
@@ -40,32 +42,85 @@ public class Juego extends InterfaceJuego
 	{
 		// Procesamiento de un instante de tiempo
 		// ...
-		
-		
+
+
 		// Dibuja el entorno segun el estado en el
 		// que se encuentre el juego. Estados:
 		// pantallaInicial, tableroDeJuego,
 		// PantallaFinal, PantallaHasPerdido.
-		this.board.dibujar(entorno);
+		this.board.dibujar(this.entorno);
+		
+		// Permite cambiar el estado del tablero para facilitar el 
+		// desarrollo del juego.
+		this.board.setEstadoDelTablero(this.board.PANTALLA_JUEGO);
 		
 		
+		// ********** Logica aplicada cuando el juego esta **********
+		// ********** en la pantalla de inicio			   **********
 		
-		if(this.board.estaIniciadoElJuego()) {
-			this.proyectil1.dibujar(entorno);
-			moverProyectiles();
-			this.peaShooter1.dibujar(entorno);			
+		if(this.board.getEstadoDelTablero() == this.board.PANTALLA_INICIAL) {
+			// TODO: Implementar la logica cuando el usuario esta en la
+			// pantalla de inicio. Cambiar el estado del tablero en la
+			// linea 55
 		}
+		
+
+		// ********** Logica aplicada cuando el juego esta **********
+		// ********** iniciado							   **********
+		
+		if(this.board.getEstadoDelTablero() == this.board.PANTALLA_JUEGO) {
+			this.moverProyectiles();
+			this.dibujarProyectiles();
+			
+			
+			this.plantasDisparar();
+			this.peaShooter1.dibujar(this.entorno);
+		}
+		
+		// ********** Logica aplicada cuando el juego esta **********
+		// ********** en la pantalla final				   **********
+		
+		if(this.board.getEstadoDelTablero() == this.board.PANTALLA_FINAL) {
+			// TODO: Implementar la logica para cuando el usuario esta
+			// en la pantalla final del juego. Cambiar el estado del tablero
+			// en la linea 55
+		}
+		
+		// ********** Logica aplicada cuando el juego esta **********
+		// ********** en la pantalla has perdido		   **********
+		
+		if(this.board.getEstadoDelTablero() == this.board.PANTALLA_HAS_PERDIDO) {
+			// TODO: implementar la logica para cuando el usuario esta
+			// en la pantalla has perdido del juego. Cambiar el estado del
+			// tablero en la linea 55
+		}
+		
 		
 	}
 	
 	public void moverProyectiles() {
-		
+		for(int i = 0; i < this.proyectiles.length; i++) {
+			if(this.proyectiles[i] != null) {
+				this.proyectiles[i].mover(this.entorno.tiempo());
+			}
+		}
 	}
 	
+	public void dibujarProyectiles() {
+		for(int i = 0; i < this.proyectiles.length; i++) {
+			if(this.proyectiles[i] != null) {
+				this.proyectiles[i].dibujar(this.entorno);
+			}
+		}
+	}
+	
+	public void plantasDisparar() {
+		// TODO: Implementar la logica de disparo de las
+		// plantas incluidas en array de plantas.
+	}
 
 	@SuppressWarnings("unused")
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		Juego juego = new Juego();
 	}
 }

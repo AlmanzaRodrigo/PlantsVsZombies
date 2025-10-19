@@ -11,6 +11,8 @@ public class PeaShooter {
 	private int alto = 80;
 	private int ancho = 80;
 	private int salud;
+	private int tiempoUltimoDisparo = 0;
+	private int velocidadDeDisparo = 1200; // en milisegundos
 	private Image imagen = Herramientas.cargarImagen("recursos/ceydsulp.png");
 	
 	public PeaShooter(double x, double y, int salud) {
@@ -28,8 +30,13 @@ public class PeaShooter {
 		System.out.println("RoseBlade se movió");
 	}
 	
-	public void disparar(Entorno entorno) {
-		System.out.println("RoseBlade disparó");
+	public ProyectilNormal disparar(int tiempoActual) {
+		if(tiempoActual - this.tiempoUltimoDisparo > this.velocidadDeDisparo) {
+			this.tiempoUltimoDisparo = tiempoActual;
+			return new ProyectilNormal(this.x + 25, this.y - 15);
+		} else {
+			return null;
+		}
 	}
 	
 	public void recibirDanio(int danio) {
