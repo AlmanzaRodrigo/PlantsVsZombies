@@ -1,6 +1,8 @@
 package juego;
 
 
+import java.awt.Color;
+
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 
@@ -21,12 +23,14 @@ public class Juego extends InterfaceJuego
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Plantas vs Zombies", 800, 600);
 
+		
 		// Inicializa otros objetos
 		this.board = new Board();
 		this.proyectiles = new ProyectilNormal[30];
 		this.plantas = new Object[45];
 		
 		this.peaShooter1 = new PeaShooter(77, 133, 100);
+		
 		
 		// Inicia el juego!
 		this.entorno.iniciar();
@@ -46,13 +50,13 @@ public class Juego extends InterfaceJuego
 
 		// Dibuja el entorno segun el estado en el
 		// que se encuentre el juego. Estados:
-		// pantallaInicial, tableroDeJuego,
-		// PantallaFinal, PantallaHasPerdido.
+		// pantallaInicial, pantallaJuego,
+		// pantallaFinal, pantallaHasPerdido.
 		this.board.dibujar(this.entorno);
 		
 		// Permite cambiar el estado del tablero para facilitar el 
 		// desarrollo del juego.
-		this.board.setEstadoDelTablero(this.board.PANTALLA_JUEGO);
+		this.board.setEstadoDelTablero(this.board.PANTALLA_HAS_PERDIDO);
 		
 		
 		// ********** Logica aplicada cuando el juego esta **********

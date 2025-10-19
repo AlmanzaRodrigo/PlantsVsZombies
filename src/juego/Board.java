@@ -2,6 +2,8 @@ package juego;
 
 import entorno.Entorno;
 import entorno.Herramientas;
+
+import java.awt.Color;
 import java.awt.Image;
 import javax.sound.sampled.Clip;
 
@@ -37,9 +39,29 @@ public class Board {
 			entorno.dibujarImagen(
 					this.imagenFondo, entorno.ancho() / 2,
 					entorno.alto() / 2, 0, 0.55
-					);			
+			);			
+		} else if(this.getEstadoDelTablero() == this.PANTALLA_FINAL) {
+			
+			// TODO: Implemetar el dibujado de la pantallaFinal del			
+			// juego. Por ahora solo muestra el texto "No implementado"
+			Color textoColor = new Color (213, 231, 247);
+			entorno.cambiarFont("Tahoma", 22, textoColor, entorno.NEGRITA);
+			entorno.escribirTexto(
+					"Pantalla No Implementada", entorno.ancho() / 2 - 150,
+					entorno.alto() / 2
+			);
+			
+		} else if(this.getEstadoDelTablero() == this.PANTALLA_HAS_PERDIDO) {
+			
+			// TODO: Implemetar el dibujado de la pantallaHasPerdido del			
+			// juego. Por ahora solo muestra el texto "No implementado"
+			Color textoColor = new Color (213, 231, 247);
+			entorno.cambiarFont("Tahoma", 22, textoColor, entorno.NEGRITA);
+			entorno.escribirTexto(
+					"Pantalla No Implementada", entorno.ancho() / 2 - 150,
+					entorno.alto() / 2
+			);
 		}
-		// TODO: Implemetar pantallaFinal y pantallaHasPerdido.
 	}
 	
 	public void reproducirMusica() {
