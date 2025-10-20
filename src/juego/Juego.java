@@ -56,7 +56,7 @@ public class Juego extends InterfaceJuego
 		
 		// Permite cambiar el estado del tablero para facilitar el 
 		// desarrollo del juego.
-		this.board.setEstadoDelTablero(this.board.PANTALLA_HAS_PERDIDO);
+		this.board.setEstadoDelTablero(this.board.PANTALLA_JUEGO);
 		
 		
 		// ********** Logica aplicada cuando el juego esta **********
