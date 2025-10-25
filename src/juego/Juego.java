@@ -6,17 +6,16 @@ import java.awt.Color;
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 
-public class Juego extends InterfaceJuego
-{
+public class Juego extends InterfaceJuego {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	
 	// Variables y métodos propios de cada grupo
 	// ...
 	private Board board;
-	private Object[] plantas;
-	private PeaShooter peaShooter1;
+	private PeaShooter[] plantas;
 	private ProyectilNormal[] proyectiles;
+	private ZombieGrinch[] zombies;
 	
 	Juego()
 	{
@@ -27,9 +26,20 @@ public class Juego extends InterfaceJuego
 		// Inicializa otros objetos
 		this.board = new Board();
 		this.proyectiles = new ProyectilNormal[30];
-		this.plantas = new Object[45];
+		this.plantas = new PeaShooter[45];
+		this.zombies = new ZombieGrinch[60];
 		
-		this.peaShooter1 = new PeaShooter(77, 133, 100);
+		
+		// se cargan manualmente las plantas y los zombies. Solo
+		// durante el desarrollo. Borrar para produccion
+		this.plantas[0] = new PeaShooter(90, 133 + 87 * 0, 100);
+		this.plantas[1] = new PeaShooter(90, 133 + 87 * 1, 100);
+		this.plantas[2] = new PeaShooter(90 + 70, 133 + 87 * 2, 100);
+		this.plantas[3] = new PeaShooter(90, 133 + 87 * 3, 100);
+		this.plantas[4] = new PeaShooter(90 + 70, 133 + 87 * 4, 100);
+		this.zombies[0] = new ZombieGrinch(700, 110 + 87 * 0);
+		this.zombies[1] = new ZombieGrinch(760, 110 + 87 * 1);
+		this.zombies[2] = new ZombieGrinch(600, 110 + 87 * 2);
 		
 		
 		// Inicia el juego!
@@ -74,7 +84,15 @@ public class Juego extends InterfaceJuego
 		
 		if(this.board.getEstadoDelTablero() == this.board.PANTALLA_JUEGO) {
 			this.moverProyectiles();
+			this.controlarColisionProyectiles();
 			this.dibujarProyectiles();
+			
+			this.dispararPlantas();
+			this.dibujarPlantas();
+			
+			this.moverZombies();
+			this.eliminarZombies();
+			this.dibujarZombies();
 			
 			
 			this.plantasDisparar();
@@ -118,9 +136,34 @@ public class Juego extends InterfaceJuego
 		}
 	}
 	
-	public void plantasDisparar() {
+	public void dispararPlantas() {
 		// TODO: Implementar la logica de disparo de las
 		// plantas incluidas en array de plantas.
+	}
+	
+	public void dibujarPlantas(){
+		// TODO: Utilizando el metodo dibujar() de cada
+		// planta en plantas[]. Debe dibujar cada una de ellas
+	}
+	
+	public void plantarDefensa() {
+		// TODO:
+	}
+	
+	public void controlarColisionProyectiles() {
+		// TODO:
+	}
+	
+	public void moverZombies() {
+		// TODO:
+	}
+	
+	public void eliminarZombies() {
+		// TODO:
+	}
+	
+	public void dibujarZombies() {
+		// TODO:
 	}
 
 	@SuppressWarnings("unused")
