@@ -12,6 +12,7 @@ public class Juego extends InterfaceJuego {
 	
 	// Variables y métodos propios de cada grupo
 	// ...
+	private Carta[] cartas;
 	private Board board;
 	private PeaShooter[] plantas;
 	private ProyectilNormal[] proyectiles;
@@ -22,9 +23,12 @@ public class Juego extends InterfaceJuego {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Plantas vs Zombies", 800, 600);
 
+		// Se creas las cartas de cada planta
+		this.cartas = new Carta[4];
+		cartas[0] = new Carta(163, 68, 50, 70);		
 		
 		// Inicializa otros objetos
-		this.board = new Board();
+		this.board = new Board(this.cartas);
 		this.proyectiles = new ProyectilNormal[30];
 		this.plantas = new PeaShooter[45];
 		this.zombies = new ZombieGrinch[60];
@@ -94,7 +98,7 @@ public class Juego extends InterfaceJuego {
 			this.eliminarZombies();
 			this.dibujarZombies();
 			
-			
+			this.plantarDefensa();
 			this.dispararPlantas();
 			this.dibujarPlantas();
 		}
@@ -148,9 +152,17 @@ public class Juego extends InterfaceJuego {
 	}
 	
 	public void plantarDefensa() {
-		// TODO: Implementar la logica de arrastra y soltar
-		// las plantas en el tablero. Utilizar los metodos
-		// entorno.estaPresionado(), entorno.seLevantoBoton()
+		if(entorno.sePresionoBoton(entorno.BOTON_IZQUIERDO)) {
+			double xMouse = entorno.mouseX();
+			double yMouse = entorno.mouseY();
+			for(Carta carta: this.cartas) {
+				if(carta != null && carta.estaDentro(xMouse, yMouse) && carta.estaDisponible()) {
+					System.out.println("La carta PeaShooter esta Disponible");
+				} else if(carta != null && carta.estaDentro(xMouse, yMouse) && !carta.estaDisponible()) {
+					System.out.println("La carta PeaShooter NO esta Disponible");
+				}
+			}
+		}
 	}
 	
 	public void controlarColisionProyectiles() {
