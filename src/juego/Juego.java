@@ -95,8 +95,8 @@ public class Juego extends InterfaceJuego {
 			this.dibujarZombies();
 			
 			
-			this.plantasDisparar();
-			this.peaShooter1.dibujar(this.entorno);
+			this.dispararPlantas();
+			this.dibujarPlantas();
 		}
 		
 		// ********** Logica aplicada cuando el juego esta **********
@@ -138,7 +138,8 @@ public class Juego extends InterfaceJuego {
 	
 	public void dispararPlantas() {
 		// TODO: Implementar la logica de disparo de las
-		// plantas incluidas en array de plantas.
+		// plantas incluidas en la lista plantas[]. Si un 
+		// elemenento es null, el metodo no hace nada.
 	}
 	
 	public void dibujarPlantas(){
@@ -147,23 +148,33 @@ public class Juego extends InterfaceJuego {
 	}
 	
 	public void plantarDefensa() {
-		// TODO:
+		// TODO: Implementar la logica de arrastra y soltar
+		// las plantas en el tablero. Utilizar los metodos
+		// entorno.estaPresionado(), entorno.seLevantoBoton()
 	}
 	
 	public void controlarColisionProyectiles() {
-		// TODO:
+		// TODO: implementar la logica que verifica si algun
+		// proyectil esta en colision con un zombie o con el
+		// borde de la pantalla. Elimina de la lista proyectiles[]
+		// aquellos que estan en colision, almacenando un null.
 	}
 	
 	public void moverZombies() {
-		// TODO:
+		// TODO: Implementar la logica que mueve cada uno de
+		// los zombies de la lista zombies[]. Si se encuentra
+		// un null en la lista, el metodo no hace nada.
 	}
 	
 	public void eliminarZombies() {
-		// TODO:
+		// TODO: Implementar la logica que elimina aquellos
+		// zombies que no tienen vida, de la lista zombies[].
+		// Almacenando en esa posicion de la lista, un null
 	}
 	
 	public void dibujarZombies() {
-		// TODO:
+		// TODO: Implementar la logica que dibuja en la pantalla
+		// cada uno de los zombies de la lista zombies[]
 	}
 
 	@SuppressWarnings("unused")
