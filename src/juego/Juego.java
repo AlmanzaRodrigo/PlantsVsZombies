@@ -16,7 +16,11 @@ public class Juego extends InterfaceJuego {
 	private Board board;
 	private PeaShooter[] plantas;
 	private ProyectilNormal[] proyectiles;
+<<<<<<< HEAD
 	private ZombieGrinch[] zombies;
+=======
+	private Casillero[][] grilla;
+>>>>>>> 0f02e9c (Actualización de Juego.java, agregado Casillero.java)
 	
 	Juego()
 	{
@@ -33,6 +37,7 @@ public class Juego extends InterfaceJuego {
 		this.plantas = new PeaShooter[45];
 		this.zombies = new ZombieGrinch[60];
 		
+<<<<<<< HEAD
 		
 		// se cargan manualmente las plantas y los zombies. Solo
 		// durante el desarrollo. Borrar para produccion
@@ -44,6 +49,19 @@ public class Juego extends InterfaceJuego {
 		this.zombies[0] = new ZombieGrinch(700, 110 + 87 * 0);
 		this.zombies[1] = new ZombieGrinch(760, 110 + 87 * 1);
 		this.zombies[2] = new ZombieGrinch(600, 110 + 87 * 2);
+=======
+		this.grilla = new Casillero[5][9];
+
+		for (int f = 0; f < 5; f++) {
+		    for (int c = 0; c < 9; c++) {
+		        double x = 150 + c * 80; // posición horizontal
+		        double y = 100 + f * 100; // posición vertical
+		        this.grilla[f][c] = new Casillero(f, c, x, y);
+		    }
+		}
+		
+		this.peaShooter1 = new PeaShooter(77, 133, 100);
+>>>>>>> 0f02e9c (Actualización de Juego.java, agregado Casillero.java)
 		
 		
 		// Inicia el juego!
